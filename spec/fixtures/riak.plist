@@ -14,6 +14,12 @@
       <integer>18098</integer>
     </dict>
 
+    <key>SoftResourceLimits</key>
+    <dict>
+      <key>NumberOfFiles</key>
+      <integer>1024</integer>
+    </dict>
+
     <key>ProgramArguments</key>
     <array>
       <string>/opt/boxen/homebrew/bin/riak</string>

@@ -1,21 +1,27 @@
-# Installs custom Riak from homebrew. Auto-requires riak::config.
+# Installs custom Riak from homebrew.
 #
 # Usage:
 #
 #     include riak
-class riak {
-  include riak::config
+class riak (
+  $configdir  = $riak::params::configdir,
+  $datadir    = $riak::params::datadir,
+  $executable = $riak::params::executable,
+  $logdir     = $riak::params::logdir,
+  $port       = $riak::params::port,
+  $version    = $riak::params::version,
+) inherits riak::params {
   include homebrew
 
   file { [
-    $riak::config::configdir,
-    $riak::config::datadir,
-    $riak::config::logdir
+    $configdir,
+    $datadir,
+    $logdir
   ]:
     ensure => directory
   }
 
-  file { "${riak::config::configdir}/app.config":
+  file { "${configdir}/app.config":
     content => template('riak/app.config.erb'),
   #    notify  => Service['dev.riak']
   }
@@ -32,7 +38,7 @@ class riak {
   }
 
   package { 'boxen/brews/riak':
-    ensure => $riak::config::version,
+    ensure => $version,
     notify => Service['dev.riak']
   }
 
@@ -51,11 +57,11 @@ class riak {
     require => File[$boxen::config::envdir]
   }
 
-  file { "${boxen::config::homebrewdir}/Cellar/riak/${riak::config::version}/libexec/etc/app.config":
+  file { "${boxen::config::homebrewdir}/Cellar/riak/${version}/libexec/etc/app.config":
     ensure  => link,
     force   => true,
-    target  => "${riak::config::configdir}/app.config",
+    target  => "${configdir}/app.config",
     require => [Package['boxen/brews/riak'],
-      File["${riak::config::configdir}/app.config"]]
+      File["${configdir}/app.config"]]
   }
 }
