@@ -15,8 +15,8 @@ class riak::params {
       $version    = '1.2.1-x86_64-boxen1'
     }
 
-    # TODO
-    Ubuntu: {
+    default: {
+      fail('Unsupported operating system. See puppet-riak/manifests/params.pp')
     }
   }
 }
