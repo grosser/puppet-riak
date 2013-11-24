@@ -6,14 +6,14 @@ describe 'riak' do
   let(:version)    { '1.2.1-x86_64-boxen1' }
   let(:facts) do
     {
-      :boxen_home => '/opt/boxen',
-      :boxen_user => 'wfarr',
-      :luser      => 'wfarr',
+      :boxen_home      => '/opt/boxen',
+      :boxen_user      => 'wfarr',
+      :luser           => 'wfarr',
+      :operatingsystem => 'Darwin',
     }
   end
 
   it do
-    should include_class('riak::config')
     should include_class('homebrew')
 
     should contain_file("#{boxen_home}/config/riak").with_ensure('directory')
