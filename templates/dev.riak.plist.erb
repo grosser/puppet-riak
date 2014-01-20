@@ -43,5 +43,11 @@
 
     <key>StandardOutPath</key>
     <string><%= @logdir %>/console.log</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>ERL_EPMD_ADDRESS</key>
+        <string>127.0.0.1</string>
+    </dict>
   </dict>
 </plist>
