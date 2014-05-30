@@ -9,6 +9,7 @@ class riak (
   $executable = $riak::params::executable,
   $logdir     = $riak::params::logdir,
   $port       = $riak::params::port,
+  $pb_port    = $riak::params::pb_port,
   $version    = $riak::params::version,
 ) inherits riak::params {
   include homebrew
