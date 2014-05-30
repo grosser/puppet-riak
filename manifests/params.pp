@@ -9,6 +9,7 @@ class riak::params {
       $datadir    = "${boxen::config::datadir}/riak"
       $logdir     = "${boxen::config::logdir}/riak"
       $port       = 18098
+      $pb_port    = 18087
 
       $executable = "${boxen::config::home}/homebrew/bin/riak"
 
